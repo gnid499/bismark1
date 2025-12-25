@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Линкор "Бисмарк" - Версия с фреймами</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/frames.css">
+</head>
+<body>
+    <div class="home-link">
+        <a href="index.html">
+            <img src="images/logo.jpg" alt="На главную" width="80" height="80">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Версия сайта с фреймами</h1>
+            <p class="subtitle">Используйте навигацию слева для перехода между разделами</p>
+        </div>
+        
+        <div class="content">
+            <p class="big-paragraph">Навигация через фреймы</p>
+            
+            <div class="frame-container">
+                <!-- Верхний фрейм -->
+                <div class="top-frame">
+                    <h3>Линкор "Бисмарк" - Исторический сайт</h3>
+                    <p>Фреймовая версия навигации по сайту</p>
+                </div>
+                
+                <div class="frames-wrapper">
+                    <!-- Боковая панель (навигация) -->
+                    <div class="sidebar">
+                        <h4>Навигация по сайту</h4>
+                        <ul class="nav-menu">
+                            <li><a href="index.html" target="mainFrame">Главная страница</a></li>
+                            <li><a href="technical.html" target="mainFrame">Технические характеристики</a></li>
+                            <li><a href="combat.html" target="mainFrame">Боевой путь</a></li>
+                            <li><a href="interactive.html" target="mainFrame">Интерактивные функции</a></li>
+                            <li><a href="students.html" target="mainFrame">Работа с массивами</a></li>
+                        </ul>
+                        
+                        <h4>Быстрые ссылки</h4>
+                        <ul class="quick-links">
+                            <li><a href="#history" target="mainFrame">История создания</a></li>
+                            <li><a href="#specs" target="mainFrame">Характеристики</a></li>
+                            <li><a href="#battles" target="mainFrame">Сражения</a></li>
+                            <li><a href="#gallery" target="mainFrame">Галерея</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Основной контент (фрейм) -->
+                    <div class="main-frame-container">
+                        <iframe name="mainFrame" src="index.html" class="main-frame"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Нижний фрейм -->
+                <div class="bottom-frame">
+                    <p>© 2023 Исторический сайт о линкоре "Бисмарк" | Все права защищены</p>
+                    <p>Используется фреймовая структура для удобной навигации</p>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <h3>Информация о фреймах</h3>
+                <div class="lists-container">
+                    <div class="marked-list">
+                        <h4>Преимущества фреймов:</h4>
+                        <ul class="square-markers">
+                            <li>Постоянная навигационная панель</li>
+                            <li>Загрузка контента без перезагрузки всей страницы</li>
+                            <li>Единый стиль на всех страницах</li>
+                            <li>Экономия трафика</li>
+                            <li>Удобство пользования</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="numbered-list">
+                        <h4>Структура фреймов:</h4>
+                        <ol>
+                            <li>Верхний фрейм - заголовок сайта</li>
+                            <li>Левый фрейм - навигационное меню</li>
+                            <li>Центральный фрейм - основной контент</li>
+                            <li>Нижний фрейм - подвал сайта</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="index.html" class="nav-button">На главную (обычная версия)</a>
+            <a href="interactive.html" class="nav-button">Интерактивные функции</a>
+            <a href="students.html" class="nav-button">Работа с массивами</a>
+        </div>
+        
+        <div class="date-container">
+            <p id="current-date"></p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

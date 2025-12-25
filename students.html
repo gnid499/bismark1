@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа с массивами - Студенты</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="home-link">
+        <a href="index.html">
+            <img src="images/logo.jpg" alt="На главную" width="80" height="80">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Работа с массивами JavaScript</h1>
+            <p class="subtitle">Система учета успеваемости студентов</p>
+        </div>
+        
+        <div class="content">
+            <!-- Форма для добавления студентов -->
+            <div class="form-container">
+                <h2>Добавление данных о студенте</h2>
+                <form id="student-form">
+                    <div class="form-group">
+                        <label for="student-name">Имя студента:</label>
+                        <input type="text" id="student-name" placeholder="Введите имя студента" required>
+                    </div>
+                    
+                    <div class="stats-container">
+                        <div class="form-group">
+                            <label for="math-grade">Оценка по математике (0-100):</label>
+                            <input type="number" id="math-grade" min="0" max="100" placeholder="0-100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="physics-grade">Оценка по физике (0-100):</label>
+                            <input type="number" id="physics-grade" min="0" max="100" placeholder="0-100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="history-grade">Оценка по истории (0-100):</label>
+                            <input type="number" id="history-grade" min="0" max="100" placeholder="0-100" required>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="button" id="add-student" class="submit-button">Добавить студента</button>
+                        <button type="button" id="calculate-stats" class="submit-button">Рассчитать статистику</button>
+                        <button type="button" onclick="clearAllData()" class="submit-button" style="background-color: #f44336;">Очистить все данные</button>
+                        <button type="button" onclick="generateTestData()" class="submit-button" style="background-color: #4CAF50;">
+                            Загрузить тестовые данные
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Таблица студентов -->
+            <div class="table-container">
+                <h2>Список студентов и их оценки</h2>
+                <table class="students-table" id="students-table">
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Имя студента</th>
+                            <th>Математика</th>
+                            <th>Физика</th>
+                            <th>История</th>
+                            <th>Сумма баллов</th>
+                            <th>Средний балл</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Данные будут добавляться через JavaScript -->
+                    </tbody>
+                </table>
+                <p id="students-count" style="text-align: center; margin-top: 10px;">Всего студентов: 0</p>
+            </div>
+            
+            <!-- Статистика -->
+            <div class="form-container">
+                <h2>Статистика по всем студентам</h2>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3>Количество студентов</h3>
+                        <p class="stat-value" id="total-students">0</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Средний балл по математике</h3>
+                        <p class="stat-value" id="math-average">0.00</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Средний балл по физике</h3>
+                        <p class="stat-value" id="physics-average">0.00</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Средний балл по истории</h3>
+                        <p class="stat-value" id="history-average">0.00</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Максимальная оценка</h3>
+                        <p class="stat-value" id="max-grade">0</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Минимальная оценка</h3>
+                        <p class="stat-value" id="min-grade">0</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Общий средний балл</h3>
+                        <p class="stat-value" id="overall-average">0.00</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Сумма всех баллов</h3>
+                        <p class="stat-value" id="total-sum">0</p>
+                    </div>
+                </div>
+                
+                <!-- Дополнительная статистика -->
+                <div class="stats-container" style="margin-top: 20px;">
+                    <div class="stat-box">
+                        <h3>Лучший студент</h3>
+                        <p id="best-student">-</p>
+                        <p class="stat-value" id="best-student-grade">0.00</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Худший студент</h3>
+                        <p id="worst-student">-</p>
+                        <p class="stat-value" id="worst-student-grade">0.00</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Процент сдавших</h3>
+                        <p class="stat-value" id="pass-percentage">0%</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Стандартное отклонение</h3>
+                        <p class="stat-value" id="std-deviation">0.00</p>
+                    </div>
+                </div>
+                
+                <!-- Информация о массивах -->
+                <div id="array-info" class="result-box" style="margin-top: 20px;">
+                    <h3>Информация о работе с массивами:</h3>
+                    <div class="lists-container">
+                        <div class="marked-list">
+                            <h4>Используемые методы массивов:</h4>
+                            <ul class="square-markers">
+                                <li>push() - добавление элементов</li>
+                                <li>forEach() - перебор элементов</li>
+                                <li>map() - преобразование массива</li>
+                                <li>filter() - фильтрация элементов</li>
+                                <li>reduce() - аккумуляция значений</li>
+                                <li>sort() - сортировка массива</li>
+                                <li>find() - поиск элементов</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="numbered-list">
+                            <h4>Этапы работы с данными:</h4>
+                            <ol>
+                                <li>Создание массива объектов</li>
+                                <li>Добавление новых элементов</li>
+                                <li>Фильтрация и сортировка</li>
+                                <li>Расчет статистических данных</li>
+                                <li>Визуализация результатов</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Поиск и фильтрация -->
+            <div class="form-container">
+                <h2>Поиск и фильтрация студентов</h2>
+                <div class="form-group">
+                    <label for="search-name">Поиск по имени:</label>
+                    <input type="text" id="search-name" placeholder="Введите имя для поиска">
+                    <button type="button" onclick="searchStudent()" class="submit-button" style="margin-top: 10px;">Найти</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="filter-grade">Фильтр по минимальному среднему баллу:</label>
+                    <input type="number" id="filter-grade" min="0" max="100" value="60" placeholder="Минимальный балл">
+                    <button type="button" onclick="filterStudents()" class="submit-button" style="margin-top: 10px;">Применить фильтр</button>
+                    <button type="button" onclick="resetFilter()" class="submit-button" style="margin-top: 10px; background-color: #9e9e9e;">Сбросить фильтр</button>
+                </div>
+                
+                <div id="search-results"></div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="index.html" class="nav-button">На главную</a>
+            <a href="interactive.html" class="nav-button">Интерактивные функции</a>
+            <a href="frames.html" class="nav-button">Версия с фреймами</a>
+            <a href="technical.html" class="nav-button">Технические характеристики</a>
+        </div>
+        
+        <div class="date-container">
+            <p id="current-date"></p>
+        </div>
+    </div>
+
+    <script>
+        // Глобальные переменные
+        let students = [];
+        let filteredStudents = [];
+        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            setupStudentSystem();
+            updateStudentsCount();
+        });
+        
+        // Настройка системы студентов
+        function setupStudentSystem() {
+            const addButton = document.getElementById('add-student');
+            const calculateButton = document.getElementById('calculate-stats');
+            const studentsTable = document.getElementById('students-table');
+            
+            if (addButton && calculateButton && studentsTable) {
+                // Добавление студента
+                addButton.addEventListener('click', function() {
+                    addStudent();
+                });
+                
+                // Расчет статистики
+                calculateButton.addEventListener('click', function() {
+                    calculateStatistics();
+                });
+                
+                // Обработка нажатия Enter в полях ввода
+                document.getElementById('student-name').addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        addStudent();
+                    }
+                });
+                
+                document.getElementById('math-grade').addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        addStudent();
+                    }
+                });
+            }
+        }
+        
+        // Добавление студента
+        function addStudent() {
+            const name = document.getElementById('student-name').value.trim();
+            const math = parseInt(document.getElementById('math-grade').value) || 0;
+            const physics = parseInt(document.getElementById('physics-grade').value) || 0;
+            const history = parseInt(document.getElementById('history-grade').value) || 0;
+            
+            if (!name) {
+                alert('Пожалуйста, введите имя студента');
+                return;
+            }
+            
+            if (math < 0 || math > 100 || physics < 0 || physics > 100 || history < 0 || history > 100) {
+                alert('Оценки должны быть в диапазоне от 0 до 100');
+                return;
+            }
+            
+            // Создание объекта студента
+            const student = {
+                id: students.length + 1,
+                name: name,
+                grades: {
+                    math: math,
+                    physics: physics,
+                    history: history
+                },
+                total: math + physics + history,
+                average: ((math + physics + history) / 3).toFixed(2),
+                status: ((math + physics + history) / 3) >= 60 ? 'Сдал' : 'Не сдал'
+            };
+            
+            // Добавление в массив
+            students.push(student);
+            
+            // Обновление таблицы
+            updateStudentsTable();
+            
+            // Очистка формы
+            clearForm();
+            
+            // Обновление счетчика
+            updateStudentsCount();
+            
+            // Показать уведомление
+            showNotification(`Студент ${name} успешно добавлен!`);
+        }
+        
+        // Обновление таблицы студентов
+        function updateStudentsTable() {
+            const tbody = document.querySelector('#students-table tbody');
+            if (!tbody) return;
+            
+            tbody.innerHTML = '';
+            
+            const studentsToShow = filteredStudents.length > 0 ? filteredStudents : students;
+            
+            studentsToShow.forEach(student => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>${student.grades.math}</td>
+                    <td>${student.grades.physics}</td>
+                    <td>${student.grades.history}</td>
+                    <td>${student.total}</td>
+                    <td>${student.average}</td>
+                    <td class="${student.status === 'Сдал' ? 'status-pass' : 'status-fail'}">
+                        ${student.status}
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            // Обновление счетчика
+            updateStudentsCount();
+        }
+        
+        // Расчет статистики
+        function calculateStatistics() {
+            if (students.length === 0) {
+                alert('Добавьте хотя бы одного студента');
+                return;
+            }
+            
+            // Базовые статистики
+            let totalStudents = students.length;
+            let mathSum = 0;
+            let physicsSum = 0;
+            let historySum = 0;
+            let allGrades = [];
+            
+            students.forEach(student => {
+                mathSum += student.grades.math;
+                physicsSum += student.grades.physics;
+                historySum += student.grades.history;
+                allGrades.push(student.grades.math, student.grades.physics, student.grades.history);
+            });
+            
+            const mathAvg = mathSum / totalStudents;
+            const physicsAvg = physicsSum / totalStudents;
+            const historyAvg = historySum / totalStudents;
+            
+            // Использование объекта Math для статистики
+            const maxGrade = Math.max(...allGrades);
+            const minGrade = Math.min(...allGrades);
+            const totalGradesSum = allGrades.reduce((a, b) => a + b, 0);
+            const overallAverage = totalGradesSum / allGrades.length;
+            
+            // Нахождение лучшего и худшего студента
+            const sortedStudents = [...students].sort((a, b) => b.average - a.average);
+            const bestStudent = sortedStudents[0];
+            const worstStudent = sortedStudents[sortedStudents.length - 1];
+            
+            // Процент сдавших
+            const passedStudents = students.filter(s => s.status === 'Сдал').length;
+            const passPercentage = ((passedStudents / totalStudents) * 100).toFixed(1);
+            
+            // Стандартное отклонение
+            const variance = allGrades.reduce((acc, grade) => {
+                return acc + Math.pow(grade - overallAverage, 2);
+            }, 0) / allGrades.length;
+            
+            const stdDeviation = Math.sqrt(variance).toFixed(2);
+            
+            // Обновление статистики на странице
+            document.getElementById('total-students').textContent = totalStudents;
+            document.getElementById('math-average').textContent = mathAvg.toFixed(2);
+            document.getElementById('physics-average').textContent = physicsAvg.toFixed(2);
+            document.getElementById('history-average').textContent = historyAvg.toFixed(2);
+            document.getElementById('max-grade').textContent = maxGrade;
+            document.getElementById('min-grade').textContent = minGrade;
+            document.getElementById('overall-average').textContent = overallAverage.toFixed(2);
+            document.getElementById('total-sum').textContent = totalGradesSum;
+            document.getElementById('best-student').textContent = bestStudent.name;
+            document.getElementById('best-student-grade').textContent = bestStudent.average;
+            document.getElementById('worst-student').textContent = worstStudent.name;
+            document.getElementById('worst-student-grade').textContent = worstStudent.average;
+            document.getElementById('pass-percentage').textContent = passPercentage + '%';
+            document.getElementById('std-deviation').textContent = stdDeviation;
+            
+            // Показать подробную статистику
+            showNotification(`Статистика рассчитана для ${totalStudents} студентов`);
+        }
+        
+        // Очистка формы
+        function clearForm() {
+            document.getElementById('student-name').value = '';
+            document.getElementById('math-grade').value = '';
+            document.getElementById('physics-grade').value = '';
+            document.getElementById('history-grade').value = '';
+            document.getElementById('student-name').focus();
+        }
+        
+        // Очистка всех данных
+        function clearAllData() {
+            if (students.length === 0) {
+                alert('Нет данных для удаления');
+                return;
+            }
+            
+            if (confirm(`Вы уверены, что хотите удалить данные о ${students.length} студентах?`)) {
+                students = [];
+                filteredStudents = [];
+                updateStudentsTable();
+                resetStatistics();
+                showNotification('Все данные удалены');
+            }
+        }
+        
+        // Сброс статистики
+        function resetStatistics() {
+            document.getElementById('total-students').textContent = '0';
+            document.getElementById('math-average').textContent = '0.00';
+            document.getElementById('physics-average').textContent = '0.00';
+            document.getElementById('history-average').textContent = '0.00';
+            document.getElementById('max-grade').textContent = '0';
+            document.getElementById('min-grade').textContent = '0';
+            document.getElementById('overall-average').textContent = '0.00';
+            document.getElementById('total-sum').textContent = '0';
+            document.getElementById('best-student').textContent = '-';
+            document.getElementById('best-student-grade').textContent = '0.00';
+            document.getElementById('worst-student').textContent = '-';
+            document.getElementById('worst-student-grade').textContent = '0.00';
+            document.getElementById('pass-percentage').textContent = '0%';
+            document.getElementById('std-deviation').textContent = '0.00';
+        }
+        
+        // Генерация тестовых данных
+        function generateTestData() {
+            const testStudents = [
+                { name: "Иван Иванов", math: 85, physics: 90, history: 78 },
+                { name: "Мария Петрова", math: 92, physics: 88, history: 95 },
+                { name: "Алексей Сидоров", math: 76, physics: 82, history: 80 },
+                { name: "Елена Козлова", math: 88, physics: 85, history: 92 },
+                { name: "Дмитрий Новиков", math: 95, physics: 91, history: 87 },
+                { name: "Анна Смирнова", math: 67, physics: 72, history: 65 },
+                { name: "Сергей Кузнецов", math: 54, physics: 60, history: 58 },
+                { name: "Ольга Васильева", math: 78, physics: 81, history: 79 }
+            ];
+            
+            testStudents.forEach((student, index) => {
+                const studentObj = {
+                    id: students.length + 1,
+                    name: student.name,
+                    grades: {
+                        math: student.math,
+                        physics: student.physics,
+                        history: student.history
+                    },
+                    total: student.math + student.physics + student.history,
+                    average: ((student.math + student.physics + student.history) / 3).toFixed(2),
+                    status: ((student.math + student.physics + student.history) / 3) >= 60 ? 'Сдал' : 'Не сдал'
+                };
+                
+                students.push(studentObj);
+            });
+            
+            updateStudentsTable();
+            showNotification(`Добавлено ${testStudents.length} тестовых студентов!`);
+        }
+        
+        // Поиск студента
+        function searchStudent() {
+            const searchName = document.getElementById('search-name').value.trim().toLowerCase();
+            
+            if (!searchName) {
+                alert('Введите имя для поиска');
+                return;
+            }
+            
+            const foundStudents = students.filter(student => 
+                student.name.toLowerCase().includes(searchName)
+            );
+            
+            if (foundStudents.length === 0) {
+                document.getElementById('search-results').innerHTML = `
+                    <div class="result-box" style="background-color: rgba(244, 67, 54, 0.2);">
+                        <h3>Результаты поиска:</h3>
+                        <p>Студенты по запросу "${searchName}" не найдены</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let resultsHTML = '<div class="result-box"><h3>Результаты поиска:</h3>';
+            
+            foundStudents.forEach(student => {
+                resultsHTML += `
+                    <div style="margin: 10px 0; padding: 10px; background-color: rgba(33, 150, 243, 0.1); border-radius: 5px;">
+                        <p><strong>${student.name}</strong></p>
+                        <p>Математика: ${student.grades.math}, Физика: ${student.grades.physics}, История: ${student.grades.history}</p>
+                        <p>Средний балл: ${student.average}, Статус: ${student.status}</p>
+                    </div>
+                `;
+            });
+            
+            resultsHTML += `</div>`;
+            document.getElementById('search-results').innerHTML = resultsHTML;
+        }
+        
+        // Фильтрация студентов по баллу
+        function filterStudents() {
+            const minGrade = parseInt(document.getElementById('filter-grade').value) || 0;
+            
+            filteredStudents = students.filter(student => 
+                parseFloat(student.average) >= minGrade
+            );
+            
+            if (filteredStudents.length === 0) {
+                showNotification(`Нет студентов со средним баллом выше ${minGrade}`);
+                return;
+            }
+            
+            updateStudentsTable();
+            showNotification(`Найдено ${filteredStudents.length} студентов со средним баллом выше ${minGrade}`);
+        }
+        
+        // Сброс фильтра
+        function resetFilter() {
+            filteredStudents = [];
+            updateStudentsTable();
+            document.getElementById('filter-grade').value = '60';
+            showNotification('Фильтр сброшен');
+        }
+        
+        // Обновление счетчика студентов
+        function updateStudentsCount() {
+            const countElement = document.getElementById('students-count');
+            if (countElement) {
+                const total = students.length;
+                const filtered = filteredStudents.length;
+                
+                if (filtered > 0 && filtered !== total) {
+                    countElement.textContent = `Показано: ${filtered} из ${total} студентов (фильтр активен)`;
+                    countElement.style.color = '#ffcc80';
+                } else {
+                    countElement.textContent = `Всего студентов: ${total}`;
+                    countElement.style.color = '#bbdefb';
+                }
+            }
+        }
+        
+        // Показать уведомление
+        function showNotification(message) {
+            // Создаем элемент уведомления
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background-color: #4CAF50;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+            `;
+            
+            // Добавляем стили для анимации
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(notification);
+            
+            // Удаляем уведомление через 3 секунды
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 3000);
+        }
+        
+        // Добавляем CSS для статусов
+        const style = document.createElement('style');
+        style.textContent = `
+            .status-pass {
+                color: #4CAF50;
+                font-weight: bold;
+            }
+            .status-fail {
+                color: #f44336;
+                font-weight: bold;
+            }
+            .button-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 20px;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

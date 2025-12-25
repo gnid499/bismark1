@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивные функции - Линкор "Бисмарк"</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="home-link">
+        <a href="index.html">
+            <img src="images/logo.jpg" alt="На главную" width="80" height="80">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Интерактивные функции JavaScript</h1>
+            <p class="subtitle">Использование стандартных объектов и работа с формами</p>
+        </div>
+        
+        <div class="content">
+            <!-- Интерактивная форма для выбора информации -->
+            <div class="form-container">
+                <h2>Выбор информации о линкоре "Бисмарк"</h2>
+                <form id="info-form">
+                    <div class="form-group">
+                        <label for="category">Выберите категорию информации:</label>
+                        <select id="category" name="category" required>
+                            <option value="">-- Выберите категорию --</option>
+                            <option value="history">История создания</option>
+                            <option value="specs">Технические характеристики</option>
+                            <option value="battles">Боевые действия</option>
+                            <option value="crew">Экипаж и служба</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Показать информацию</button>
+                </form>
+                
+                <div id="result"></div>
+            </div>
+            
+            <!-- Примеры использования стандартных объектов JavaScript -->
+            <div class="form-container">
+                <h2>Использование стандартных объектов JavaScript</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3>Объект Math</h3>
+                        <div id="number-examples"></div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Объект String</h3>
+                        <div id="string-examples"></div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <h3>Объект Date</h3>
+                        <p id="current-date-time"></p>
+                        <script>
+                            // Использование объекта Date
+                            const now = new Date();
+                            document.getElementById('current-date-time').innerHTML = 
+                                `Текущая дата: ${now.toLocaleDateString('ru-RU')}<br>` +
+                                `Текущее время: ${now.toLocaleTimeString('ru-RU')}<br>` +
+                                `День недели: ${now.toLocaleDateString('ru-RU', {weekday: 'long'})}<br>` +
+                                `Год: ${now.getFullYear()}`;
+                        </script>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Калькулятор характеристик линкора -->
+            <div class="form-container">
+                <h2>Калькулятор характеристик линкора</h2>
+                <form id="calculator-form">
+                    <div class="form-group">
+                        <label for="displacement">Водоизмещение (тонн):</label>
+                        <input type="number" id="displacement" value="50900" min="1000" max="100000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="speed">Скорость (узлов):</label>
+                        <input type="number" id="speed" value="30" min="10" max="50" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="crew">Экипаж (человек):</label>
+                        <input type="number" id="crew" value="2200" min="100" max="5000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guns">Количество орудий ГК:</label>
+                        <input type="number" id="guns" value="8" min="1" max="20" required>
+                    </div>
+                    
+                    <button type="button" onclick="calculateShipStats()" class="submit-button">Рассчитать характеристики</button>
+                </form>
+                
+                <div id="calculator-result"></div>
+            </div>
+            
+            <!-- Конвертер единиц измерения -->
+            <div class="form-container">
+                <h2>Конвертер единиц измерения</h2>
+                <form id="converter-form">
+                    <div class="form-group">
+                        <label for="value">Значение:</label>
+                        <input type="number" id="value" value="100" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="conversion-type">Тип конвертации:</label>
+                        <select id="conversion-type" required>
+                            <option value="knots-to-kmh">Узлы → км/ч</option>
+                            <option value="kmh-to-knots">км/ч → Узлы</option>
+                            <option value="tons-to-kg">Тонны → Килограммы</option>
+                            <option value="kg-to-tons">Килограммы → Тонны</option>
+                            <option value="mm-to-inches">Миллиметры → Дюймы</option>
+                            <option value="inches-to-mm">Дюймы → Миллиметры</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" onclick="convertUnits()" class="submit-button">Конвертировать</button>
+                </form>
+                
+                <div id="converter-result"></div>
+            </div>
+            
+            <!-- Генератор случайных данных -->
+            <div class="form-container">
+                <h2>Генератор случайных данных о кораблях</h2>
+                <button type="button" onclick="generateRandomShip()" class="submit-button">Сгенерировать случайный корабль</button>
+                
+                <div id="random-ship-result" class="result-box" style="margin-top: 20px;"></div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <a href="index.html" class="nav-button">На главную</a>
+            <a href="students.html" class="nav-button">Работа с массивами</a>
+            <a href="technical.html" class="nav-button">Технические характеристики</a>
+            <a href="frames.html" class="nav-button">Версия с фреймами</a>
+        </div>
+        
+        <div class="date-container">
+            <p id="current-date"></p>
+        </div>
+    </div>
+
+    <script>
+        // Калькулятор характеристик линкора
+        function calculateShipStats() {
+            const displacement = parseInt(document.getElementById('displacement').value) || 0;
+            const speed = parseInt(document.getElementById('speed').value) || 0;
+            const crew = parseInt(document.getElementById('crew').value) || 0;
+            const guns = parseInt(document.getElementById('guns').value) || 0;
+            
+            // Использование объекта Math для расчетов
+            const powerIndex = Math.round((displacement * speed) / 1000);
+            const efficiency = (displacement / crew).toFixed(2);
+            const firepower = guns * 10; // Упрощенный расчет огневой мощи
+            const randomFactor = (Math.random() * 0.5 + 0.75).toFixed(2);
+            const combatPower = Math.round(powerIndex * firepower * parseFloat(randomFactor));
+            
+            // Использование объекта Number для форматирования
+            const formattedDisplacement = displacement.toLocaleString('ru-RU');
+            const formattedPower = combatPower.toLocaleString('ru-RU');
+            
+            const result = `
+                <div class="result-box">
+                    <h3>Результаты расчета:</h3>
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <h4>Водоизмещение</h4>
+                            <p class="stat-value">${formattedDisplacement} т</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Индекс мощности</h4>
+                            <p class="stat-value">${powerIndex}</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Эффективность</h4>
+                            <p class="stat-value">${efficiency} т/чел</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Огневая мощь</h4>
+                            <p class="stat-value">${firepower}</p>
+                        </div>
+                    </div>
+                    <p><strong>Расчетная боевая мощь:</strong> ${formattedPower}</p>
+                    <p><strong>Коэффициент случайности:</strong> ${randomFactor}</p>
+                    <p><em>Расчеты выполнены с использованием объектов Math и Number</em></p>
+                </div>
+            `;
+            
+            document.getElementById('calculator-result').innerHTML = result;
+        }
+        
+        // Конвертер единиц измерения
+        function convertUnits() {
+            const value = parseFloat(document.getElementById('value').value) || 0;
+            const conversionType = document.getElementById('conversion-type').value;
+            let result = 0;
+            let description = '';
+            
+            // Использование объекта Math для точных расчетов
+            switch(conversionType) {
+                case 'knots-to-kmh':
+                    result = Math.round(value * 1.852 * 100) / 100;
+                    description = `${value} узлов = ${result} км/ч`;
+                    break;
+                case 'kmh-to-knots':
+                    result = Math.round(value / 1.852 * 100) / 100;
+                    description = `${value} км/ч = ${result} узлов`;
+                    break;
+                case 'tons-to-kg':
+                    result = Math.round(value * 1000);
+                    description = `${value} тонн = ${result.toLocaleString('ru-RU')} кг`;
+                    break;
+                case 'kg-to-tons':
+                    result = Math.round(value / 1000 * 1000) / 1000;
+                    description = `${value} кг = ${result} тонн`;
+                    break;
+                case 'mm-to-inches':
+                    result = Math.round(value / 25.4 * 100) / 100;
+                    description = `${value} мм = ${result} дюймов`;
+                    break;
+                case 'inches-to-mm':
+                    result = Math.round(value * 25.4);
+                    description = `${value} дюймов = ${result} мм`;
+                    break;
+            }
+            
+            // Использование объекта String для форматирования вывода
+            const formattedResult = `
+                <div class="result-box">
+                    <h3>Результат конвертации:</h3>
+                    <p style="font-size: 1.2em;">${description}</p>
+                    <p>Точность: ${result.toString().length} значащих цифр</p>
+                </div>
+            `;
+            
+            document.getElementById('converter-result').innerHTML = formattedResult;
+        }
+        
+        // Генератор случайных данных о кораблях
+        function generateRandomShip() {
+            // Использование объектов Math и Date
+            const shipNames = ["Тигр", "Лев", "Орел", "Сокол", "Молот", "Гром", "Вихрь", "Ураган"];
+            const shipTypes = ["линкор", "крейсер", "эсминец", "фрегат", "корвет"];
+            const countries = ["Германия", "Великобритания", "США", "Япония", "Франция", "Италия"];
+            
+            // Генерация случайных значений с использованием Math
+            const randomName = shipNames[Math.floor(Math.random() * shipNames.length)];
+            const randomType = shipTypes[Math.floor(Math.random() * shipTypes.length)];
+            const randomCountry = countries[Math.floor(Math.random() * countries.length)];
+            const randomYear = Math.floor(Math.random() * 50) + 1900;
+            const randomDisplacement = Math.floor(Math.random() * 50000) + 1000;
+            const randomSpeed = Math.floor(Math.random() * 30) + 10;
+            
+            // Использование объекта Date для генерации даты
+            const launchDate = new Date();
+            launchDate.setFullYear(randomYear, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1);
+            
+            const result = `
+                <div class="result-box">
+                    <h3>Сгенерированный корабль:</h3>
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <h4>Название</h4>
+                            <p class="stat-value">${randomName}</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Тип</h4>
+                            <p class="stat-value">${randomType}</p>
+                        </div>
+                        <div class="stat-box">
+                            <h4>Страна</h4>
+                            <p class="stat-value">${randomCountry}</p>
+                        </div>
+                    </div>
+                    <p><strong>Год спуска:</strong> ${launchDate.getFullYear()}</p>
+                    <p><strong>Дата спуска:</strong> ${launchDate.toLocaleDateString('ru-RU')}</p>
+                    <p><strong>Водоизмещение:</strong> ${randomDisplacement.toLocaleString('ru-RU')} тонн</p>
+                    <p><strong>Скорость:</strong> ${randomSpeed} узлов</p>
+                    <p><em>Данные сгенерированы с использованием объектов Math, Date и массивов</em></p>
+                </div>
+            `;
+            
+            document.getElementById('random-ship-result').innerHTML = result;
+        }
+    </script>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
