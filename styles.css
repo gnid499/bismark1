@@ -1,0 +1,308 @@
+/* Основные стили для всех страниц */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #1a237e, #283593);
+    color: white;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* Картинка для перехода на главную */
+.home-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.home-link img {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #87CEEB;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.home-link img:hover {
+    transform: scale(1.1);
+    border-color: #00bcd4;
+}
+
+.header {
+    text-align: center;
+    padding: 100px 20px 50px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 20px;
+    color: #bbdefb;
+}
+
+h2 {
+    font-size: 2em;
+    color: #90caf9;
+    margin: 20px 0;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #64b5f6;
+    margin: 15px 0;
+}
+
+.subtitle {
+    font-size: 1.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    color: #e3f2fd;
+}
+
+.gif-container {
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.gif-image {
+    max-width: 100%;
+    height: auto;
+    border: 3px solid #1976d2;
+    border-radius: 10px;
+}
+
+.gif-caption {
+    font-style: italic;
+    margin-top: 10px;
+    color: #bbdefb;
+}
+
+.content {
+    background-color: rgba(13, 71, 161, 0.8);
+    padding: 40px;
+    border-radius: 15px;
+    margin: 40px 0;
+    line-height: 1.8;
+    font-size: 1.1em;
+}
+
+/* Стиль для параграфа с особым шрифтом */
+.big-paragraph {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    font-size: 40px;
+    margin: 20px 0;
+    text-align: center;
+    color: #ffcc80;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.lists-container {
+    display: flex;
+    gap: 40px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.numbered-list, .marked-list {
+    flex: 1;
+    min-width: 300px;
+    background-color: rgba(25, 118, 210, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.numbered-list ol {
+    margin-left: 20px;
+    line-height: 1.8;
+}
+
+.marked-list ul.square-markers {
+    list-style-type: square;
+    margin-left: 20px;
+    line-height: 1.8;
+}
+
+.table-container {
+    margin: 40px 0;
+    overflow-x: auto;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.comparison-table th {
+    background-color: #1565c0;
+    padding: 15px;
+    text-align: left;
+    color: white;
+    font-weight: bold;
+}
+
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #64b5f6;
+}
+
+.comparison-table tr:hover {
+    background-color: rgba(100, 181, 246, 0.2);
+}
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.nav-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #1976d2;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid #1565c0;
+}
+
+.nav-button:hover {
+    background-color: #1565c0;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.date-container {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+/* Формы */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 30px 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #bbdefb;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #64b5f6;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2196f3;
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+}
+
+.submit-button {
+    background-color: #2196f3;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #1976d2;
+    transform: scale(1.05);
+}
+
+.result-box {
+    background-color: rgba(33, 150, 243, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border-left: 5px solid #2196f3;
+}
+
+/* Стили для страницы со студентами */
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.students-table th {
+    background-color: #1565c0;
+    padding: 15px;
+    text-align: left;
+    color: white;
+}
+
+.students-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #64b5f6;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.stat-box {
+    background-color: rgba(25, 118, 210, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffcc80;
+}
